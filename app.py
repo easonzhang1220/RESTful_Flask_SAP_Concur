@@ -41,11 +41,10 @@ class Items(Resource):
 class All_itmes(Resource):
     def get(self):
         global items
-
+        # clean data and generate return items
         if len(items) > 100:
             time_now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + "Z"
             lastest_100_items = items[-100:]
-            # clean data and generate return items
             items = [item for item in items[:-100] if time_diffent(item["item"]["timestamp"], time_now) < 2]
             items += lastest_100_items
             return items
