@@ -21,7 +21,6 @@ def time_diffent(timestring, time_now):
     b = datetime.datetime.strptime(timestring[:-1], '%Y-%m-%dT%H:%M:%S.%f')
     return (a - b).seconds
 
-
 class Items(Resource):
     def post(self, id):
         if id in [item["item"]["id"] for item in items]:
@@ -36,7 +35,6 @@ class Items(Resource):
 
         items.append(item)
         return item, 201
-
 
 class All_itmes(Resource):
     def get(self):
