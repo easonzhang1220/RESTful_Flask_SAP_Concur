@@ -40,6 +40,7 @@ class Items(Resource):
 class All_itmes(Resource):
     def get(self):
         global items
+
         if len(items) > 100:
             time_now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + "Z"
             lastest_100_items = items[-100:]
