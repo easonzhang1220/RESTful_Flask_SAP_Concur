@@ -1,15 +1,13 @@
 from flask import Flask
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api, Resource
 import datetime
-import time
 
 app = Flask(__name__)
 api = Api(app)
 
-""" 
- items example:
- [{ item:{ id: 123, timestamp: 2016-01-01T23:01:01.000Z } }]
- """
+
+# items example:
+# [{ item:{ id: 123, timestamp: 2016-01-01T23:01:01.000Z } }]
 # data stack
 items = []
 
@@ -22,6 +20,7 @@ def time_diffent(timestring, time_now):
     a = datetime.datetime.strptime(time_now[:-1], '%Y-%m-%dT%H:%M:%S.%f')
     b = datetime.datetime.strptime(timestring[:-1], '%Y-%m-%dT%H:%M:%S.%f')
     return (a - b).seconds
+
 
 class Items(Resource):
     def post(self, id):
@@ -37,7 +36,8 @@ class Items(Resource):
         items.append(item)
         return item, 201
 
-class all_itmes(Resource):
+
+class All_itmes(Resource):
     def get(self):
         global items
         if len(items) > 100:
@@ -50,7 +50,8 @@ class all_itmes(Resource):
 
         return items
 
-api.add_resource(all_itmes, "/items")
+
+api.add_resource(All_itmes, "/items")
 api.add_resource(Items, "/items/<string:id>")
 
 app.run(debug=True)
