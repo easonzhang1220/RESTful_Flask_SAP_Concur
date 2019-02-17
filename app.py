@@ -33,6 +33,7 @@ class Items(Resource):
                 "timestamp": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + "Z"
             }
         }
+
         items.append(item)
         return item, 201
 
