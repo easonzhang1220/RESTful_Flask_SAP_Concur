@@ -44,9 +44,9 @@ class All_itmes(Resource):
         # clean data and generate return items
         if len(items) > 100:
             time_now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + "Z"
-            lastest_100_items = items[-100:]
-            items = [item for item in items[:-100] if time_diffent(item["item"]["timestamp"], time_now) < 2]
-            items += lastest_100_items
+            # lastest_100_items = items[-100:]
+            items = [item for item in items[:-100] if time_diffent(item["item"]["timestamp"], time_now) < 2] + items[-100:]
+            # items += lastest_100_items
             return items
 
         return items
